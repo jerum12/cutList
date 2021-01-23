@@ -1,34 +1,34 @@
-import React from "react";
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { DropzoneArea } from 'material-ui-dropzone'
-import DescriptionIcon from '@material-ui/icons/Description';
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => createStyles({
-  previewChip: {
-    minWidth: 160
-  },
-}));
+import React, {useEffect, useState} from "react";
 
 
-const theme = createMuiTheme({
-    overrides: {
-        MuiDropzoneArea: {
-            root:{
-                border : 'none',
-                minHeight : '100px'
+function OutputForm({dataFromTable,datas}) {
+    
+    const [newDatas, setNewDatas] = useState([]);
+    const [loading, setLoading] = useState([])
+    useEffect(() => {
+        const interval = setTimeout(() => {
+         setValues(dataFromTable,datas);
+        }, 500);
+         
+          return () => {
+             clearInterval(interval)
+          }
+     }, [])
+
+     const setValues = (dCS,dT) => {
+        let newData = [];
+
+        if(dCS !== undefined){
+            for (var i=0;i<dCS.inputs.length;i++) {
+                let keyValue = dCS.inputs[i].key;
+                let objData = dT.filter(function(arr){return arr.key == keyValue})[0];
+                let d = {...dCS.inputs[i], ...objData}
+                newData.push(d);
             }
-        },
-        MuiDropzonePreviewList: {
-            root:{
-                display : 'block'
-            }
-        }
-    }
-  });
+         }
+         setNewDatas(newData);
+     }
 
-function OutputForm({handleChange}) {
-    const classes = useStyles();
         return ( 
             <fieldset>
                     <h3>Create Security Questions</h3>

@@ -15,7 +15,7 @@ body {
 
 .upload {
   position: relative;
-  width: 900px;
+  width: 1100px;
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: -14px 16px 5px 1px rgba(0, 0, 0, .2);
@@ -53,7 +53,7 @@ body {
 .upload .upload-files header p .load {
   display: inline-block;
   font-weight: 100;
-  margin-left: -8px;
+  /* margin-left: -8px; */
   transform: translateX(-20px);
   opacity: 0;
   animation: faderight 1s 1.5s ease both;
@@ -284,27 +284,28 @@ body {
   display: block;
   overflow: hidden;
 }
-.multi_step_form #msform {
+.multi_step_form .msform {
   text-align: center;
   position: relative;
-  max-width: 810px;
+  max-width: 1000px;
   margin: 0 auto;
   background: #fff;
   z-index: 1;
+  display: block;
 }
-.multi_step_form #msform .tittle {
+.multi_step_form .msform .tittle {
   text-align: center;
 }
-.multi_step_form #msform .tittle h2 {
+.multi_step_form .msform .tittle h2 {
   font: 500 24px/35px 'Roboto', sans-serif;
   color: #3f4553;
   padding-bottom: 5px;
 }
-.multi_step_form #msform .tittle p {
+.multi_step_form .msform .tittle p {
   font: 400 16px/28px 'Roboto', sans-serif;
   color: #5f6771;
 }
-/* .multi_step_form #msform fieldset {
+/* .multi_step_form .msform fieldset {
   border: 0;
   padding: 20px 105px 0;
   position: relative;
@@ -312,26 +313,26 @@ body {
   left: 0;
   right: 0;
 } */
-.multi_step_form #msform fieldset:not(:first-of-type) {
+.multi_step_form .msform fieldset:not(:first-of-type) {
   display: none;
 }
-.multi_step_form #msform fieldset h3 {
+.multi_step_form .msform fieldset h3 {
   font: 500 18px/35px 'Roboto', sans-serif;
   color: #3f4553;
 }
-.multi_step_form #msform fieldset h6 {
+.multi_step_form .msform fieldset h6 {
   font: 400 15px/28px 'Roboto', sans-serif;
   color: #5f6771;
   padding-bottom: 30px;
 }
-.multi_step_form #msform fieldset .intl-tel-input {
+.multi_step_form .msform fieldset .intl-tel-input {
   display: block;
   background: transparent;
   border: 0;
   box-shadow: none;
   outline: none;
 }
-.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag {
+.multi_step_form .msform fieldset .intl-tel-input .flag-container .selected-flag {
   padding: 0 20px;
   background: transparent;
   border: 0;
@@ -339,10 +340,10 @@ body {
   outline: none;
   width: 65px;
 }
-.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow {
+.multi_step_form .msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow {
   border: 0;
 }
-.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow:after {
+.multi_step_form .msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow:after {
   content: "\f35f";
   position: absolute;
   top: 0;
@@ -350,21 +351,21 @@ body {
   font: normal normal normal 24px/7px Ionicons;
   color: #5f6771;
 }
-.multi_step_form #msform fieldset #phone {
+.multi_step_form .msform fieldset #phone {
   padding-left: 80px;
 }
-.multi_step_form #msform fieldset .form-group {
+.multi_step_form .msform fieldset .form-group {
   padding: 0 10px;
 }
-.multi_step_form #msform fieldset .fg_2, .multi_step_form #msform fieldset .fg_3 {
+.multi_step_form .msform fieldset .fg_2, .multi_step_form .msform fieldset .fg_3 {
   padding-top: 10px;
   display: block;
   overflow: hidden;
 }
-.multi_step_form #msform fieldset .fg_3 {
+.multi_step_form .msform fieldset .fg_3 {
   padding-bottom: 70px;
 }
-.multi_step_form #msform fieldset .form-control, .multi_step_form #msform fieldset .product_select {
+.multi_step_form .msform fieldset .form-control, .multi_step_form .msform fieldset .product_select {
   border-radius: 3px;
   border: 1px solid #d8e1e7;
   padding: 0 20px;
@@ -375,37 +376,37 @@ body {
   outline: none;
   width: 100%;
 }
-.multi_step_form #msform fieldset .form-control.placeholder, .multi_step_form #msform fieldset .product_select.placeholder {
+.multi_step_form .msform fieldset .form-control.placeholder, .multi_step_form .msform fieldset .product_select.placeholder {
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .form-control:-moz-placeholder, .multi_step_form #msform fieldset .product_select:-moz-placeholder {
+.multi_step_form .msform fieldset .form-control:-moz-placeholder, .multi_step_form .msform fieldset .product_select:-moz-placeholder {
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .form-control::-moz-placeholder, .multi_step_form #msform fieldset .product_select::-moz-placeholder {
+.multi_step_form .msform fieldset .form-control::-moz-placeholder, .multi_step_form .msform fieldset .product_select::-moz-placeholder {
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .form-control::-webkit-input-placeholder, .multi_step_form #msform fieldset .product_select::-webkit-input-placeholder {
+.multi_step_form .msform fieldset .form-control::-webkit-input-placeholder, .multi_step_form .msform fieldset .product_select::-webkit-input-placeholder {
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .form-control:hover, .multi_step_form #msform fieldset .product_select:hover, .multi_step_form #msform fieldset .form-control:focus, .multi_step_form #msform fieldset .product_select:focus {
+.multi_step_form .msform fieldset .form-control:hover, .multi_step_form .msform fieldset .product_select:hover, .multi_step_form .msform fieldset .form-control:focus, .multi_step_form .msform fieldset .product_select:focus {
   border-color: #4db6ac;
 }
-.multi_step_form #msform fieldset .form-control:focus.placeholder, .multi_step_form #msform fieldset .product_select:focus.placeholder {
+.multi_step_form .msform fieldset .form-control:focus.placeholder, .multi_step_form .msform fieldset .product_select:focus.placeholder {
   color: transparent;
 }
-.multi_step_form #msform fieldset .form-control:focus:-moz-placeholder, .multi_step_form #msform fieldset .product_select:focus:-moz-placeholder {
+.multi_step_form .msform fieldset .form-control:focus:-moz-placeholder, .multi_step_form .msform fieldset .product_select:focus:-moz-placeholder {
   color: transparent;
 }
-.multi_step_form #msform fieldset .form-control:focus::-moz-placeholder, .multi_step_form #msform fieldset .product_select:focus::-moz-placeholder {
+.multi_step_form .msform fieldset .form-control:focus::-moz-placeholder, .multi_step_form .msform fieldset .product_select:focus::-moz-placeholder {
   color: transparent;
 }
-.multi_step_form #msform fieldset .form-control:focus::-webkit-input-placeholder, .multi_step_form #msform fieldset .product_select:focus::-webkit-input-placeholder {
+.multi_step_form .msform fieldset .form-control:focus::-webkit-input-placeholder, .multi_step_form .msform fieldset .product_select:focus::-webkit-input-placeholder {
   color: transparent;
 }
-.multi_step_form #msform fieldset .product_select:after {
+.multi_step_form .msform fieldset .product_select:after {
   display: none;
 }
-.multi_step_form #msform fieldset .product_select:before {
+.multi_step_form .msform fieldset .product_select:before {
   content: "\f35f";
   position: absolute;
   top: 0;
@@ -413,13 +414,13 @@ body {
   font: normal normal normal 24px/48px Ionicons;
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .product_select .list {
+.multi_step_form .msform fieldset .product_select .list {
   width: 100%;
 }
-.multi_step_form #msform fieldset .done_text {
+.multi_step_form .msform fieldset .done_text {
   padding-top: 40px;
 }
-.multi_step_form #msform fieldset .done_text .don_icon {
+.multi_step_form .msform fieldset .done_text .don_icon {
   height: 36px;
   width: 36px;
   line-height: 36px;
@@ -431,13 +432,13 @@ body {
   color: #fff;
   text-align: center;
 }
-.multi_step_form #msform fieldset .done_text h6 {
+.multi_step_form .msform fieldset .done_text h6 {
   line-height: 23px;
 }
-.multi_step_form #msform fieldset .code_group {
+.multi_step_form .msform fieldset .code_group {
   margin-bottom: 60px;
 }
-.multi_step_form #msform fieldset .code_group .form-control {
+.multi_step_form .msform fieldset .code_group .form-control {
   border: 0;
   border-bottom: 1px solid #a1a7ac;
   border-radius: 0;
@@ -450,12 +451,12 @@ body {
   text-align: center;
   line-height: 1;
 }
-.multi_step_form #msform fieldset .passport {
+.multi_step_form .msform fieldset .passport {
   margin-top: -10px;
   padding-bottom: 30px;
   position: relative;
 }
-.multi_step_form #msform fieldset .passport .don_icon {
+.multi_step_form .msform fieldset .passport .don_icon {
   height: 36px;
   width: 36px;
   line-height: 36px;
@@ -469,19 +470,19 @@ body {
   color: #fff;
   text-align: center;
 }
-.multi_step_form #msform fieldset .passport h4 {
+.multi_step_form .msform fieldset .passport h4 {
   font: 500 15px/23px 'Roboto', sans-serif;
   color: #5f6771;
   padding: 0;
 }
-.multi_step_form #msform fieldset .input-group {
+.multi_step_form .msform fieldset .input-group {
   padding-bottom: 40px;
 }
-.multi_step_form #msform fieldset .input-group .custom-file {
+.multi_step_form .msform fieldset .input-group .custom-file {
   width: 100%;
   height: auto;
 }
-.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label {
+.multi_step_form .msform fieldset .input-group .custom-file .custom-file-label {
   width: 168px;
   border-radius: 5px;
   cursor: pointer;
@@ -491,46 +492,46 @@ body {
   transition: all 300ms linear 0s;
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label i {
+.multi_step_form .msform fieldset .input-group .custom-file .custom-file-label i {
   font-size: 20px;
   padding-right: 10px;
 }
-.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label:hover, .multi_step_form #msform fieldset .input-group .custom-file .custom-file-label:focus {
+.multi_step_form .msform fieldset .input-group .custom-file .custom-file-label:hover, .multi_step_form .msform fieldset .input-group .custom-file .custom-file-label:focus {
   background: #4db6ac;
   border-color: #4db6ac;
   color: #fff;
 }
-.multi_step_form #msform fieldset .input-group .custom-file input {
+.multi_step_form .msform fieldset .input-group .custom-file input {
   display: none;
 }
-.multi_step_form #msform fieldset .file_added {
+.multi_step_form .msform fieldset .file_added {
   text-align: left;
   padding-left: 190px;
   padding-bottom: 60px;
 }
-.multi_step_form #msform fieldset .file_added li {
+.multi_step_form .msform fieldset .file_added li {
   font: 400 15px/28px 'Roboto', sans-serif;
   color: #5f6771;
 }
-.multi_step_form #msform fieldset .file_added li a {
+.multi_step_form .msform fieldset .file_added li a {
   color: #4db6ac;
   font-weight: 500;
   display: inline-block;
   position: relative;
   padding-left: 15px;
 }
-.multi_step_form #msform fieldset .file_added li a i {
+.multi_step_form .msform fieldset .file_added li a i {
   font-size: 22px;
   padding-right: 8px;
   position: absolute;
   left: 0;
   transform: rotate(20deg);
 }
-.multi_step_form #msform #progressbar {
+.multi_step_form .msform #progressbar {
   margin-bottom: 30px;
   overflow: hidden;
 }
-.multi_step_form #msform #progressbar li {
+.multi_step_form .msform #progressbar li {
   list-style-type: none;
   color: #99a2a8;
   font-size: 9px;
@@ -539,13 +540,13 @@ body {
   position: relative;
   font: 500 13px/1 'Roboto', sans-serif;
 }
-.multi_step_form #msform #progressbar li:nth-child(2):before {
+.multi_step_form .msform #progressbar li:nth-child(2):before {
   content: "\f12f";
 }
-.multi_step_form #msform #progressbar li:nth-child(3):before {
+.multi_step_form .msform #progressbar li:nth-child(3):before {
   content: "\f457";
 }
-.multi_step_form #msform #progressbar li:before {
+.multi_step_form .msform #progressbar li:before {
   content: "\f1fa";
   font: normal normal normal 30px/50px Ionicons;
   width: 50px;
@@ -556,7 +557,7 @@ body {
   border-radius: 50%;
   margin: 0 auto 10px auto;
 }
-.multi_step_form #msform #progressbar li:after {
+.multi_step_form .msform #progressbar li:after {
   content: '';
   width: 100%;
   height: 10px;
@@ -566,17 +567,17 @@ body {
   top: 21px;
   z-index: -1;
 }
-.multi_step_form #msform #progressbar li:last-child:after {
+.multi_step_form .msform #progressbar li:last-child:after {
   width: 150%;
 }
-.multi_step_form #msform #progressbar li.active {
+.multi_step_form .msform #progressbar li.active {
   color: #4db6ac;
 }
-.multi_step_form #msform #progressbar li.active:before, .multi_step_form #msform #progressbar li.active:after {
+.multi_step_form .msform #progressbar li.active:before, .multi_step_form .msform #progressbar li.active:after {
   background: #4db6ac;
   color: white;
 }
-.multi_step_form #msform .action-button,.multi_step_form #msform .previous_button {
+.multi_step_form .msform .action-button,.multi_step_form .msform .previous_button {
   background: #4db6ac;
   color: white;
   border: 0 none;
@@ -589,27 +590,27 @@ body {
   text-transform: uppercase;
   display: inline-block;
 }
-.multi_step_form #msform .action-button:hover:enabled {
+.multi_step_form .msform .action-button:hover:enabled {
   background: #2caf94;
   /* border-color: #406761; */
 }
-.multi_step_form #msform .previous_button:hover {
+.multi_step_form .msform .previous_button:hover {
   background: #d7e4e3;
   /* border-color: #406761; */
 }
-.multi_step_form #msform .previous_button {
+.multi_step_form .msform .previous_button {
   background: transparent;
   color: #99a2a8;
   border-color: #99a2a8;
 }
-.multi_step_form #msform :disabled {
+.multi_step_form .msform :disabled {
   background: transparent;
   color: #99a2a8;
   border-color: #99a2a8;
   cursor: default;
 }
-.multi_step_form #msform .previous_button:hover, .multi_step_form #msform .previous_button:focus,
-.multi_step_form #msform .action-button:hover, .multi_step_form #msform .action-button:focus {
+.multi_step_form .msform .previous_button:hover, .multi_step_form .msform .previous_button:focus,
+.multi_step_form .msform .action-button:hover, .multi_step_form .msform .action-button:focus {
   border-color: #406764;
 }
 .button-class{
@@ -625,4 +626,54 @@ body {
 
 .drop-zone-area{
   border: 1px solid red;
+}
+
+
+/*** Overrides for react-virtualized styles ***/
+.ReactVirtualized__Table__Grid {
+  background-color: white;
+  border-bottom: 1px solid #D3D3D3;;
+  border-right: 1px solid #D3D3D3;;
+}
+.ReactVirtualized__Table__headerColumn {
+  align-items: center;
+  border-right:1px solid #D3D3D3;;
+  display: flex;
+  flex: 3;
+  text-align: center;
+  height: 100%;
+  min-width: 0;
+}
+.ReactVirtualized__Table__headerRow {
+  background-image: linear-gradient(#fff, #efefef);
+  border: 1px solid #D3D3D3;;
+}
+.ReactVirtualized__Table__row {
+  border-bottom: 1px solid #D3D3D3;;
+  border-left: 1px solid #D3D3D3;;
+}
+.ReactVirtualized__Table__rowColumn {
+  align-items: center;
+  border-right: 1px solid #D3D3D3;;
+  /* display: flex;
+  flex: 1; */
+  text-align: center;
+  height: 100%;
+  min-width: 0;
+}
+
+.ReactVirtualized__Table__rowColumn:last-child {
+  border-right: none;
+}
+
+.ReactVirtualized__Table__headerColumn:last-child  {
+  border-right: none;
+}
+.errorMsg {
+  max-width: 350px;
+  color: #f21e08;
+  padding: 2px 0;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 300;
 }

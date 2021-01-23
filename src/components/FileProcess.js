@@ -17,6 +17,9 @@ import * as XLSX from 'xlsx';
 import UploadExcelFileDropZone from './UploadExcelFileDropZone' ;
 import SubmitTableForm from './SubmitTableForm';
 import OutputForm from './OutputForm';
+import FormControl from '@material-ui/core/FormControl';
+import Test from './Test'
+
 
 function getSteps() {
     return ['Upload Excel File', 'Submit Form', 'Output'];
@@ -98,8 +101,14 @@ function FileProcess () {
     const steps = getSteps();
     const [disabled, setDisabled] = useState(true);
     const [files, setFiles] = useState([]);
-    const [hasError, setHasError] = useState(false)
-    const [datas, setDatas] = useState([])
+    const [hasError, setHasError] = useState(false);
+    const [datas, setDatas] = useState([]);
+    const [errorCutWidth, setErrorCutWidth] = useState(false);
+    const [helperTextCutWidth, setHelperTextCutWidth] = useState('');    
+
+    //FOR STEP 2
+    const [standardLength, setStandardLength] = useState([{ standardLength: 0 }]);
+    const [cutWidth, setCutWidth] = useState(0);
     
     const groupBy = (array, f) => {
         let groups = {};
@@ -108,11 +117,18 @@ function FileProcess () {
         groups[group] = groups[group] || [];
         groups[group].push(o);
         });
+       
+
         return Object.keys(groups).map(function (group) {
-        return groups[group];
+            let keys = JSON.parse(group);
+            let map = {key: keys[0] + " - " + keys[1], groups: groups[group]};
+        return map;
         })
     }
-    
+
+
+
+    // FOR STEP 1
     const handleChange = (files) => {
         setFiles(files)
         if(files.length > 0)
@@ -120,78 +136,121 @@ function FileProcess () {
         else
             setDisabled(true);
     }
+    //END
 
-    const handleSubmit = file => e =>  {
+    //FOR STEP 2
+    const handleInputChange = (e, key, index) => {
+        const { name, value } = e.target;
+    
+        console.log("name",name);
+        console.log("value",value);
+        console.log("key",key);
+        console.log("index",index);
+    
+        if(name === "cutWidth"){
 
+          // if (value.length === 0) {
+          //   setErrorCutWidth(true);
+          //   setHelperTextCutWidth("Mandatory");
+          // } else {
+          //   setHelperTextCutWidth('');
+          //   setErrorCutWidth(false)
+          // }
+          setCutWidth(value)
+        }else{
+            const list = [...standardLength];
+            list[index][name] = value;
+            setStandardLength(list);
+        }
+      };
+
+      const handleRemoveClick = index => {
+        const list = [...standardLength];
+        list.splice(index, 1);
+        setStandardLength(list);
+      };
+
+      const handleAddClick = () => {
+
+            console.log(standardLength.length)
+            setStandardLength([...standardLength, { standardLength: ""}]);
+        };
+    //END
+
+    const handleSubmit = (file,aS) => e =>  {
+        console.log(aS)
         e.preventDefault();
         
-        var files = file[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            var arrayObj = [];
-            var data = e.target.result;
-            let readedData = XLSX.read(data, {type: 'binary'});
-            const wsname = readedData.SheetNames[0];
-            const ws = readedData.Sheets[wsname];
-    
-            /* Convert array to json*/
-            const dataParse = XLSX.utils.sheet_to_json(ws, {header:1});
-            if(dataParse.length > 0){
-                var headerPart = dataParse[0][0];
-                var headerGrade = dataParse[0][1];
-                var headerDesc = dataParse[0][2];
-                var headerQty = dataParse[0][3];
-                var headerLength = dataParse[0][4];
-                var hasError = false;
+        if(aS === 0){
+            var files = file[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var arrayObj = [];
+                    var data = e.target.result;
+                    let readedData = XLSX.read(data, {type: 'binary'});
+                    const wsname = readedData.SheetNames[0];
+                    const ws = readedData.Sheets[wsname];
+            
+                    /* Convert array to json*/
+                    const dataParse = XLSX.utils.sheet_to_json(ws, {header:1});
+                    if(dataParse.length > 0){
+                        var headerPart = dataParse[0][0];
+                        var headerGrade = dataParse[0][1];
+                        var headerDesc = dataParse[0][2];
+                        var headerQty = dataParse[0][3];
+                        var headerLength = dataParse[0][4];
+                        var hasError = false;
 
-                if(String(headerPart).toUpperCase() != "NUMBER")
-                    hasError = true;
-                else if(String(headerGrade).toUpperCase() != "GRADE")
-                    hasError = true;
-                else if(String(headerDesc).toUpperCase() != "DESCRIPTION")
-                    hasError = true;
-                else if(String(headerQty).toUpperCase() != "QUANTITY")
-                    hasError = true;
-                else if(String(headerLength).toUpperCase() != "LENGTH")
-                    hasError = true;
+                        if(String(headerPart).toUpperCase() != "NUMBER")
+                            hasError = true;
+                        else if(String(headerGrade).toUpperCase() != "GRADE")
+                            hasError = true;
+                        else if(String(headerDesc).toUpperCase() != "DESCRIPTION")
+                            hasError = true;
+                        else if(String(headerQty).toUpperCase() != "QUANTITY")
+                            hasError = true;
+                        else if(String(headerLength).toUpperCase() != "LENGTH")
+                            hasError = true;
 
-                if(hasError === true){                    
-                    toast.error("Uploaded File is Invalid!", {
-                        position: toast.POSITION.TOP_CENTER,
-                        transition: Flip,
-                        className: 'error-toast',
-                        hideProgressBar: true
-                      });
-                }else{
-                    for(var i=1; i< dataParse.length;i++){
-                        var jsonData = {};
-    
-                        jsonData[headerPart] = dataParse[i][0];
-                        jsonData[headerGrade] = dataParse[i][1];
-                        jsonData[headerDesc] = dataParse[i][2];
-                        jsonData[headerQty] = dataParse[i][3];
-                        jsonData[headerLength] = dataParse[i][4];
-    
-                        arrayObj.push(jsonData)
+                        if(hasError === true){                    
+                            toast.error("Uploaded File is Invalid!", {
+                                position: toast.POSITION.TOP_CENTER,
+                                transition: Flip,
+                                className: 'error-toast',
+                                hideProgressBar: true
+                            });
+                        }else{
+                            for(var i=1; i< dataParse.length;i++){
+                                var jsonData = {};
+            
+                                jsonData[headerPart] = dataParse[i][0];
+                                jsonData[headerGrade] = dataParse[i][1];
+                                jsonData[headerDesc] = dataParse[i][2];
+                                jsonData[headerQty] = dataParse[i][3];
+                                jsonData[headerLength] = dataParse[i][4];
+            
+                                arrayObj.push(jsonData)
+                            }
+                            var result = groupBy(arrayObj, function (item) {
+                                return [item.GRADE, item.DESCRIPTION];
+                            });
+                            setDatas(result);
+                            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                        }
+
+                    
+                    }else{
+                        toast.error("Uploaded File is Invalid!", {
+                            position: toast.POSITION.TOP_CENTER,
+                            transition: Flip,
+                            className: 'error-toast',
+                            hideProgressBar: true
+                        });
                     }
-                     var result = groupBy(arrayObj, function (item) {
-                         return [item.GRADE, item.DESCRIPTION];
-                       });
-                       setDatas(result);
-                       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-                }
-
-              
-            }else{
-                toast.error("Uploaded File is Invalid!", {
-                    position: toast.POSITION.TOP_CENTER,
-                    transition: Flip,
-                    className: 'error-toast',
-                    hideProgressBar: true
-                  });
-            }
-        };
-        reader.readAsBinaryString(files)
+                };
+                reader.readAsBinaryString(files)
+        }
+        
         
         
     };
@@ -231,41 +290,57 @@ function FileProcess () {
                         </header>
 
                         <section className="multi_step_form">  
-                         <form id="msform"> 
-                         
-                            <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-                                {steps.map((label) => (
-                                <Step key={label}>
-                                    <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
-                                </Step>
-                                ))}
-                            </Stepper>
+                        <FormControl className="msform">
+                        {/* <MaterialUIForm onSubmit={handleSubmit} className="msform" 
+                        autoComplete="on"
+                        disableSubmitButtonOnError={true}
+                        >*/}
+                          {/* <form id="msform">  */}
+                          
+                              <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+                                  {steps.map((label) => (
+                                  <Step key={label}>
+                                      <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+                                  </Step>
+                                  ))}
+                              </Stepper>
 
 
-                            {/* {getStepContent(activeStep)} */}
-                            {activeStep == 0 ?
-                                <UploadExcelFileDropZone handleChange={handleChange} files={files} hasError={hasError}/>
-                                : activeStep == 1 ?
-                                     <SubmitTableForm datas={datas}/>
-                                : activeStep == 2 ?
-                                    <OutputForm/>
-                                : ''
-                            }
+                              {/* {getStepContent(activeStep)} */}
+                              {activeStep == 0 ?
+                                  <UploadExcelFileDropZone handleChange={handleChange} files={files} hasError={hasError}/>
+                                  : activeStep == 1 ?
+                                    
+                                          // <SubmitTableForm datas={datas} handleInputChange={handleInputChange} 
+                                          //                     handleAddClick={handleAddClick} 
+                                          //                     handleRemoveClick={handleRemoveClick}
+                                          //                     handleSubmit={handleSubmit}
+                                          //                     standardLength={standardLength}
+                                          //                     cutWidth={cutWidth}
+                                          //                     errorCutWidth={errorCutWidth}
+                                          //                     helperTextCutWidth={helperTextCutWidth}/>
+                                          <Test/>
+                                  
+                                  : activeStep == 2 ?
+                                      <OutputForm/>
+                                  : ''
+                              }
 
-                            <div className="button-class">
-                                {activeStep > 0 
-                                    ? <button type="button"  onClick={handleBack} className="previous previous_button">Back</button>
-                                    : ''
-                                }
-                                {activeStep < 2 
-                                    ?  <button type="button" disabled={disabled} onClick={handleSubmit(files)} className="next action-button">Continue</button>  
-                                    : ''
-                                }
+                              <div className="button-class">
+                                  {activeStep > 0 
+                                      ? <button type="button"  onClick={handleBack} className="previous previous_button">Back</button>
+                                      : ''
+                                  }
+                                  {activeStep < 2 
+                                      ?  <button type="submit" disabled={disabled} onClick={handleSubmit(files,activeStep)} className="next action-button">Continue</button>  
+                                      : ''
+                                  }
 
-                               
-                            </div>
-
-                            </form>  
+                                
+                              </div>
+                              </FormControl>
+                              {/* </form>   */}
+                            {/* </MaterialUIForm> */}
                         </section>  
                     </div>
 
